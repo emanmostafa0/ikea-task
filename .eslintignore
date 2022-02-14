@@ -1,0 +1,7 @@
+# MacOS
+/node_modules/**	../.DS_Store
+# GitHub
+../.github
+
+# Source
+build/**
