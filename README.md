@@ -22,7 +22,7 @@
 
 * I have used ``` react-modal ``` library for the popup dialog, it is more flexible library and can be edited easily.
 
-## Assumtions I made:
+## Assumptions I made:
 ### Availabilty assumptions: 
 * I have assumed that the same article can be used in different products, and the user can collect the product based on the articles, so for example if I have an article called "leg" and the amountInStock=4 , product1 needs " 4 legs " and product2 needs "4 legs", that means we have 1 product1 available and 1 product2.
 * if the user ordered 1 item of product1 , the availabity of article "leg" will be 0, so we don't have product1 and product2 available anymore.
