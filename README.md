@@ -45,19 +45,19 @@
 
   ### pros and cons of using promise.all for loading the page in my design: 
      #### pros:
-      * If the articles and products have success response, loading the page will be more faster , as no call is waiting for the other call as they are independant calls.
+     * If the articles and products have success response, loading the page will be more faster , as no call is waiting for the other call as they are independant calls.
      #### cons:
-      * If getting the articles failed and used all the trails and still failed, that means the response of this promise.all will be failing message and I can't render the page with list of products without articles to be ready.
-      * If the two calls (products, articles) failed, the promise.all will wait for 3 trails for for each api call to be done.
+     * If getting the articles failed and used all the trails and still failed, that means the response of this promise.all will be failing message and I can't render the page with list of products without articles to be ready.
+     * If the two calls (products, articles) failed, the promise.all will wait for 3 trails for for each api call to be done.
 
 
   ### pros and cons of synchronous calls: 
      #### pros:
-      * The articles will not be called and can't be updated in the database if adding a sale is failed.
-      * if the api has an outage, only sale api will be called and has some trails, but the articles will not be called (less api calls).
+     * The articles will not be called and can't be updated in the database if adding a sale is failed.
+     * if the api has an outage, only sale api will be called and has some trails, but the articles will not be called (less api calls).
      #### cons:
-      * the response of registration a sale will be slower as I need to wait for adding sale to be done , then call patch articles and after the two calls are done synchronously, I will show to the user that registration sale is done successfully.
-      * if the sale is successfully added , but updating articles is failing, that means the sale is added to the database but the articles are not updated and this is sale is not completed , so we have many sales in the database are not completely done.
+     * the response of registration a sale will be slower as I need to wait for adding sale to be done , then call patch articles and after the two calls are done synchronously, I will show to the user that registration sale is done successfully.
+     * if the sale is successfully added , but updating articles is failing, that means the sale is added to the database but the articles are not updated and this is sale is not completed , so we have many sales in the database are not completely done.
 
 
 ## Frontend performance:
