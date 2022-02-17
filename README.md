@@ -24,20 +24,20 @@
 
 ## Assumptions I made:
 ### Availabilty assumptions: 
-* I have assumed that the same article can be used in different products, and the user can collect the product based on the articles, so for example if I have an article called "leg" and the amountInStock=4 , product1 needs " 4 legs " and product2 needs "4 legs", that means we have 1 product1 available and 1 product2.
-* if the user ordered 1 item of product1 , the availabity of article "leg" will be 0, so we don't have product1 and product2 available anymore.
-* I have asssumed also that the availabilities of the product is based on the least sets of articles in the stock that needed for this product. for example product1 needs "2 legs" and "8 seats" , and we have an article called {"leg" , amountInStock= 4} and {"seat", amountInStock=8}, that means we can collect (2 available sets of legs, and 1 available set of seat) so that the avaiability of product1 will be 1.
+* I have assumed that the same article can be used in different products, and the user can collect the product based on the articles needed for this product, so for example if I have an article called "leg" and the amountInStock=4 , product1 needs " 4 legs " and product2 needs "4 legs", that means we have 1 product1 available can be collected or 1 product2 can be collected.
+* if the user ordered 1 item of product1 , the availability of article "leg" will be 0, so we don't have product1 and product2 available anymore.
+* I have asssumed also that the availabilities of the product is based on the least sets of articles in the stock that needed for this product. for example product1 needs "2 legs" and "8 seats" , and we have an article called {"leg" , amountInStock= 4} and {"seat", amountInStock=8}, that means we can collect (2 available sets of legs, and 1 available set of seats) so that the avaiability of product1 will be 1.
 
 ### Shop cart assumption: 
 * I have assumed that the user will order the items directly after clicking on submit, but maybe shop cart is a good feature for the user experience.
-* this shop cart feature needs to be discussed,  as we don't have an api availlable for this part and the other solution is to implement this shop cart with localStorage, this is something for future work section.
+* this shop cart feature needs to be discussed with the backend developers, as we don't have an api availlable for this part and the other solution is to implement this shop cart with localStorage, this is something for future work section.
 
 
 ### Sale assumptions: 
 * I have assumed that the amountInStock for specific article couldn't be changed until I am sure that the sale added successfully to the database.
 
 ## API outage solutions in the FE:
-* As I see that the api outage happens a lot , and the Frondend implementation should be stable as much as I can, so that I have used axios-retry to recall the spesific api that has ``` 503 statusCode ```, I have added a max number of trails to be 3 times only because if I have so many trails , that may prevent the api from recovering from its overloaded state, and it will continue to block or refuse requests. and consequently its ability to recover is further reduced.
+* As I see that the api outage happens a lot , and the Frondend implementation should be stable as much as we can, so that I have used axios-retry to recall the spesific api that has ``` 503 statusCode ```, I have added a max number of trails to be 3 times only because if I have so many trails , that may prevent the api from recovering from its overloaded state, and it will continue to block or refuse requests. and consequently its ability to recover is further reduced.
 * if all the retails failed , message will be displayed to the user that there is something wrong with the api and user can click on retry button to retry to call the api again.
 * I have used ``` promise.all ``` when the page is loaded to get all  ``` products and articles ``` , to make the loading faster and then map every product's articles with the whole articles to get the name of the article.
 * I have used ``` synchronous calls ``` for registration a sale so that If the user registered a sale, and the sale is failed to be added to the database, the api for updating bulk of articled will not be called. so in my design I need to wait for a successful adding a sale in the database , then I will update the articles amountInStock.
@@ -47,8 +47,8 @@
      #### pros:
       * If the articles and products have success response, loading the page will be more faster , as no call is waiting for the other call as they are independant calls.
      #### cons:
-      * if getting the articles failed and used all the trails and still failed, that means the response of this promise.all will be failing message and I can't render the page with list of products without articles to be ready.
-      * if the two calls (products, articles) failed, the promise.all will wait for 3 trails for for each api call to be done.
+      * If getting the articles failed and used all the trails and still failed, that means the response of this promise.all will be failing message and I can't render the page with list of products without articles to be ready.
+      * If the two calls (products, articles) failed, the promise.all will wait for 3 trails for for each api call to be done.
 
 
   ### pros and cons of synchronous calls: 
@@ -57,7 +57,7 @@
       * if the api has an outage, only sale api will be called and has some trails, but the articles will not be called (less api calls).
      #### cons:
       * the response of registration a sale will be slower as I need to wait for adding sale to be done , then call patch articles and after the two calls are done synchronously, I will show to the user that registration sale is done successfully.
-      * if the sale is successfully added , but updating articles is failing, that means the sale is added to the database but the articles are not upated and this is sale is not completed , so we have many sales in the database are not completely done.
+      * if the sale is successfully added , but updating articles is failing, that means the sale is added to the database but the articles are not updated and this is sale is not completed , so we have many sales in the database are not completely done.
 
 
 ## Frontend performance:
@@ -79,7 +79,7 @@
      * useReducer is dispatching the action only for the reducer that is specified for this useReducer.
      * dispatch only the actions with objects, so dispatching async actions is not provided with useReducer. 
      * using useContext with 1 store , makes unnecessary renders happens for some components that don't need to be rendered, because of unrelated states are changed in this store. so that I had to create multiple stores for unrelated states (dialog state, products state) , then the components subscribed to the specific store , so that the component will render only if the states in this store are changed. and if the other store changed ,this component will not be rendered. 
-    (long story short: react hooks is not suitable for complicated application because of creating multiple stores make design more diffecult for debugging).
+    (long story short: react hooks is not suitable for complicated application because of creating multiple stores make design more difficult for debugging).
      
 ## Mocking Api in testing:
 * I have mocked the api functions in the unit test using ``` Jest.mock and jest.fn  ``` with the specific scenarios (success scenario and failed scenario)
