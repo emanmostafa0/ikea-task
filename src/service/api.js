@@ -13,9 +13,9 @@ class Api {
                 this.client.get('articles'),
                 this.client.get('products')
             ]);
+            console.error(res);
             return this.handleResponses(res);
         } catch(err) {
-
             return this.handleError(err);
         }
     }
@@ -71,10 +71,10 @@ class Api {
 
 
     static handleError(err) {  
-        console.error(err.response);
+        console.error(err?.response);
         return {
-            error: err.response?.status,
-            error_message: err.response?.data?.message
+            error: err?.response?.status,
+            error_message: err?.response?.data?.message
         };
     }
 }
@@ -91,7 +91,7 @@ axiosRetry(Api.client, {
         return retryCount * 2000; 
     },
     retryCondition: (error) => {
-        return error.response.status === 503;
+        return error?.response?.status === 503;
     }});
 
 export default Api;

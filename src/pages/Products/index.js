@@ -18,7 +18,10 @@ function Products() {
                         dispatch({ type: PAGEERROR , payload: list.error_message });
                     }
                     else {
-                        dispatch({ type: PAGELIST , payload: list });
+                        if(list?.products?.length)
+                            dispatch({ type: PAGELIST , payload: list });
+                        else  
+                            dispatch({ type: PAGEERROR , payload: "No List is available" });
                     }
                 })
                 .catch((error) => {
