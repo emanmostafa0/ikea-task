@@ -14,7 +14,7 @@
 
 * I have used Cypress for E2E testing : you can try it out by this command: ``` npm run cypress:open ``` , If that command doesn't work , maybe this command is better :  ``` yarn start & yarn cypess open ``` .
 
-* for code organization and having the same syntax, I have used Eslint. I have some eslint rules setted up in .eslintrc.js .
+* for code organization and having the same syntax, I have used Eslint. I have some eslint rules setted up in ``` .eslintrc.js ``` .
 
 * I have downloaded eslint plugin in VScode, so that the editor can easily detect if there is an eslint error.
 
