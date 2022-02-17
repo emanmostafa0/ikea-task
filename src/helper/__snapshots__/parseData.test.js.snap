@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`paseData parse products 1`] = `
+Array [
+  Object {
+    "articles": Array [
+      Object {
+        "amountRequired": 2,
+        "id": 11,
+        "name": "article1",
+      },
+    ],
+    "id": 1,
+    "name": "test1",
+    "quantity": 1,
+  },
+  Object {
+    "articles": Array [
+      Object {
+        "amountRequired": 2,
+        "id": 11,
+        "name": "article1",
+      },
+    ],
+    "id": 2,
+    "name": "test2",
+    "quantity": 1,
+  },
+]
+`;
+
+exports[`paseData pase products 1`] = `
+Array [
+  Object {
+    "articles": Array [
+      Object {
+        "amountRequired": 2,
+        "id": 11,
+        "name": "article1",
+      },
+    ],
+    "id": 1,
+    "name": "test1",
+    "quantity": 1,
+  },
+  Object {
+    "articles": Array [
+      Object {
+        "amountRequired": 2,
+        "id": 11,
+        "name": "article1",
+      },
+    ],
+    "id": 2,
+    "name": "test2",
+    "quantity": 1,
+  },
+]
+`;
+
+exports[`paseData update products 1`] = `
+Array [
+  Object {
+    "articles": Array [
+      Object {
+        "amountRequired": 2,
+        "id": 11,
+      },
+    ],
+    "id": 1,
+    "name": "test1",
+    "quantity": 0,
+  },
+  Object {
+    "articles": Array [
+      Object {
+        "amountRequired": 2,
+        "id": 11,
+      },
+    ],
+    "id": 2,
+    "name": "test2",
+    "quantity": 0,
+  },
+]
+`;
