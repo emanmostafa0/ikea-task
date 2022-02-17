@@ -18,9 +18,9 @@
 
 * I have downloaded eslint plugin in VScode, so that the editor can easily detect if there is an eslint error.
 
-* I have used 'lint-staged' in package.json , so that if there is an error for eslint can be easily detected before committing my changes to github.
+* I have used ``` lint-staged ``` in package.json , so that if there is an error for eslint can be easily detected before committing my changes to github.
 
-* I have used 'react-modal' library for the popup dialog, it is more flexible library and can be edited easily.
+* I have used ``` react-modal ``` library for the popup dialog, it is more flexible library and can be edited easily.
 
 ## Assumtions I made:
 ### Availabilty assumptions: 
